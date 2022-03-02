@@ -1,20 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:todo_app_flutter/screens/task_screen.dart';
 
-void main() => runApp(const TodoApp());
+void main() => runApp(const MyApp());
 
-class TodoApp extends StatelessWidget {
-  const TodoApp({Key? key}) : super(key: key);
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white70,
-      appBar: AppBar(
-        title: Text('To Do App'),
-        backgroundColor: Colors.white,
-        centerTitle: true,
-      ),
-
+    return const MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: TaskScreen(),
     );
   }
 }
