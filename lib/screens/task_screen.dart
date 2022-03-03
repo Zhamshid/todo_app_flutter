@@ -9,10 +9,10 @@ class TaskScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.defaultLightBlueAccent,
-      floatingActionButton: FloatingActionButton(onPressed: () {  },
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
         backgroundColor: AppColors.defaultLightBlueAccent,
         child: const Icon(Icons.add),
-
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -49,10 +49,15 @@ class TaskScreen extends StatelessWidget {
           Expanded(
             child: Container(
               decoration: const BoxDecoration(
-                  color: AppColors.defaultWhite,
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(20),
-                      topRight: Radius.circular(20))),
+                color: AppColors.defaultWhite,
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(20),
+                  topRight: Radius.circular(20),
+                ),
+              ),
+              child: ListView(
+
+              ),
             ),
           ),
         ],
