@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:todo_app_flutter/commons/constants/constants.dart';
+import 'package:todo_app_flutter/commons/widgets/tasks_list.dart';
 import 'package:todo_app_flutter/res/colors/app_colors.dart';
 
 class TaskScreen extends StatelessWidget {
@@ -48,6 +49,7 @@ class TaskScreen extends StatelessWidget {
           ),
           Expanded(
             child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
               decoration: const BoxDecoration(
                 color: AppColors.defaultWhite,
                 borderRadius: BorderRadius.only(
@@ -55,9 +57,7 @@ class TaskScreen extends StatelessWidget {
                   topRight: Radius.circular(20),
                 ),
               ),
-              child: ListView(
-
-              ),
+              child: TasksList(),
             ),
           ),
         ],
@@ -65,3 +65,4 @@ class TaskScreen extends StatelessWidget {
     );
   }
 }
+
