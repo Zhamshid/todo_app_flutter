@@ -2,16 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:todo_app_flutter/commons/constants/constants.dart';
 import 'package:todo_app_flutter/commons/widgets/tasks_list.dart';
 import 'package:todo_app_flutter/res/colors/app_colors.dart';
+import 'package:todo_app_flutter/screens/add_task_screen.dart';
 
 class TaskScreen extends StatelessWidget {
   const TaskScreen({Key? key}) : super(key: key);
+
+  Widget buildBottomSheet(BuildContext context) => Container();
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.defaultLightBlueAccent,
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          showModalBottomSheet(context: context, builder: (context) => const AddTaskScreen());
+        },
         backgroundColor: AppColors.defaultLightBlueAccent,
         child: const Icon(Icons.add),
       ),
@@ -57,7 +63,7 @@ class TaskScreen extends StatelessWidget {
                   topRight: Radius.circular(20),
                 ),
               ),
-              child: TasksList(),
+              child: const TasksList(),
             ),
           ),
         ],
@@ -65,4 +71,3 @@ class TaskScreen extends StatelessWidget {
     );
   }
 }
-

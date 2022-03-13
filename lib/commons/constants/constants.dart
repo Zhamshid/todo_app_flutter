@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todo_app_flutter/res/colors/app_colors.dart';
 
 class AppConstants {
 
@@ -10,5 +11,10 @@ class AppConstants {
   static const kSubHeaderTextStyle = TextStyle(
     color: Colors.white,
     fontSize: 18,
+  );
+
+  static const kBottomSheetHeaderTextStyle = TextStyle(
+    color: AppColors.defaultLightBlueAccent,
+    fontSize: 30,
   );
 }
