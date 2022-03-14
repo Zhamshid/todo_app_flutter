@@ -1,7 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:todo_app_flutter/commons/constants/constants.dart';
-import 'package:todo_app_flutter/commons/widgets/add_button.dart';
 import 'package:todo_app_flutter/res/colors/app_colors.dart';
 
 class AddTaskScreen extends StatelessWidget {
@@ -21,20 +19,32 @@ class AddTaskScreen extends StatelessWidget {
           ),
         ),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: const <Widget>[
-            Expanded(
-              child: Text(
-                'Add Task',
-                style: AppConstants.kBottomSheetHeaderTextStyle,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            const Text(
+              'Add Task',
+              textAlign: TextAlign.center,
+              style: AppConstants.kBottomSheetHeaderTextStyle,
+            ),
+            const TextField(
+              autofocus: true,
+              textAlign: TextAlign.center,
+            ),
+            TextButton(
+              onPressed: () {},
+              child: const Text(
+                'Add',
+                style: AppConstants.kSubHeaderTextStyle,
+              ),
+              style: ButtonStyle(
+                elevation: MaterialStateProperty.all(5),
+                backgroundColor:
+                    MaterialStateProperty.all(AppColors.defaultLightBlueAccent),
               ),
             ),
-            AddButton(),
           ],
         ),
       ),
     );
   }
 }
-
