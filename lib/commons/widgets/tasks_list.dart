@@ -2,11 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:todo_app_flutter/commons/constants/constants.dart';
 import 'package:todo_app_flutter/res/colors/app_colors.dart';
 
-class TasksList extends StatelessWidget {
+class TasksList extends StatefulWidget {
   const TasksList({
     Key? key,
   }) : super(key: key);
 
+  @override
+  State<TasksList> createState() => _TasksListState();
+}
+
+class _TasksListState extends State<TasksList> {
   @override
   Widget build(BuildContext context) {
     return ListView(
