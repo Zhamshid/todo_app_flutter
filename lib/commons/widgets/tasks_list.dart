@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:todo_app_flutter/commons/constants/constants.dart';
-import 'package:todo_app_flutter/res/colors/app_colors.dart';
+import 'package:todo_app_flutter/commons/widgets/task_tile.dart';
+import 'package:todo_app_flutter/models/task.dart';
 
 class TasksList extends StatefulWidget {
   const TasksList({
@@ -12,59 +12,26 @@ class TasksList extends StatefulWidget {
 }
 
 class _TasksListState extends State<TasksList> {
-  @override
-  Widget build(BuildContext context) {
-    return ListView(
-      primary: false,
-      children: const <Widget>[
-        TaskTile(),
-        TaskTile(),
-        TaskTile(),
-      ],
-    );
-  }
-}
-
-class TaskTile extends StatefulWidget {
-  const TaskTile({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  State<TaskTile> createState() => _TaskTileState();
-}
-
-class _TaskTileState extends State<TaskTile> {
-  bool isChecked = false;
+  List<Task> task = [
+    Task(name: 'Meeting 8pm'),
+    Task(name: 'Calisma'),
+    Task(name: 'GYM'),
+  ];
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      title: Text('This is a task',
-          style: AppConstants.kTaskTextStyle.copyWith(
-            decoration: isChecked ? TextDecoration.lineThrough : null,
-          )),
-      trailing: TaskCheckbox(isChecked,onChanged: (newValue){
-        setState(() {
-          isChecked = newValue!;
-        });
-      },),
-    );
-  }
-}
-
-class TaskCheckbox extends StatelessWidget {
-  final bool checkBoxState;
-  final void Function(bool?)? onChanged;
-
-  const TaskCheckbox(this.checkBoxState, {Key? key, this.onChanged}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Checkbox(
-      activeColor: AppColors.defaultLightBlueAccent,
-      value: checkBoxState,
-      onChanged: onChanged,
+    return ListView.builder(
+      itemBuilder: (context, index) {
+        return TaskTile(
+          taskTitle: task[index].name,
+          isChecked: task[index].isDone,
+          checkboxCallback: (newValue){
+            setState(() {
+              task[index].toggleDone();
+            });
+          },
+        );
+      },itemCount: task.length,
     );
   }
 }
