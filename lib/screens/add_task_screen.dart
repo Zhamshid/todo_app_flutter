@@ -3,10 +3,14 @@ import 'package:todo_app_flutter/commons/constants/constants.dart';
 import 'package:todo_app_flutter/res/colors/app_colors.dart';
 
 class AddTaskScreen extends StatelessWidget {
-  const AddTaskScreen({Key? key}) : super(key: key);
+   const AddTaskScreen({Key? key, this.addTaskCallback}) : super(key: key);
+
+   final void Function(String?)? addTaskCallback;
 
   @override
   Widget build(BuildContext context) {
+    String? newTaskTitle;
+
     return Container(
       color: AppColors.bottomSheetVisibleColor,
       child: Container(
@@ -26,12 +30,17 @@ class AddTaskScreen extends StatelessWidget {
               textAlign: TextAlign.center,
               style: AppConstants.kBottomSheetHeaderTextStyle,
             ),
-            const TextField(
+            TextField(
               autofocus: true,
               textAlign: TextAlign.center,
+              onChanged: (value){
+                newTaskTitle = value;
+              },
             ),
             TextButton(
-              onPressed: () {},
+              onPressed: () {
+                addTaskCallback!(newTaskTitle);
+              },
               child: const Text(
                 'Add',
                 style: AppConstants.kSubHeaderTextStyle,
