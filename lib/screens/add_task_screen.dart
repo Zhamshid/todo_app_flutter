@@ -1,11 +1,14 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:todo_app_flutter/commons/constants/constants.dart';
+import 'package:todo_app_flutter/models/task.dart';
 import 'package:todo_app_flutter/res/colors/app_colors.dart';
+import 'package:provider/provider.dart';
+import 'package:todo_app_flutter/models/task_data.dart';
 
 class AddTaskScreen extends StatelessWidget {
-   const AddTaskScreen({Key? key, this.addTaskCallback}) : super(key: key);
+  const AddTaskScreen({Key? key, }) : super(key: key);
 
-   final void Function(String?)? addTaskCallback;
 
   @override
   Widget build(BuildContext context) {
@@ -33,13 +36,14 @@ class AddTaskScreen extends StatelessWidget {
             TextField(
               autofocus: true,
               textAlign: TextAlign.center,
-              onChanged: (value){
+              onChanged: (value) {
                 newTaskTitle = value;
               },
             ),
             TextButton(
               onPressed: () {
-                addTaskCallback!(newTaskTitle);
+                Provider.of<TaskData>(context,listen: false).addTask(newTaskTitle);
+                Navigator.pop(context);
               },
               child: const Text(
                 'Add',
