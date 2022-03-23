@@ -21,6 +21,9 @@ class _TasksListState extends State<TasksList> {
             return TaskTile(
               taskTitle: task.name,
               isChecked: task.isDone,
+              onLongPress: (){
+                taskData.removeTask(task);
+              },
               checkboxCallback: (newValue) {
                 taskData.updateTask(task);
               },
