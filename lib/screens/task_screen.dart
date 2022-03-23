@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:todo_app_flutter/commons/constants/constants.dart';
 import 'package:todo_app_flutter/commons/widgets/tasks_list.dart';
 import 'package:todo_app_flutter/models/task.dart';
+import 'package:todo_app_flutter/models/task_data.dart';
 import 'package:todo_app_flutter/res/colors/app_colors.dart';
 import 'package:todo_app_flutter/screens/add_task_screen.dart';
 
@@ -13,11 +15,6 @@ class TaskScreen extends StatefulWidget {
 }
 
 class _TaskScreenState extends State<TaskScreen> {
-  List<Task> task = [
-    Task(name: 'Meeting 8pm'),
-    Task(name: 'Calisma'),
-    Task(name: 'GYM'),
-  ];
 
   Widget buildBottomSheet(BuildContext context) => Container();
 
@@ -35,10 +32,14 @@ class _TaskScreenState extends State<TaskScreen> {
                 padding: EdgeInsets.only(
                     bottom: MediaQuery.of(context).viewInsets.bottom),
                 child: AddTaskScreen(
-                  addTaskCallback: (newTaskTitle){
-                    setState(() {
-                      task.add(Task(name: newTaskTitle),);
-                    });
+                  addTaskCallback: (newTaskTitle) {
+                    setState(
+                      () {
+                        Provider.of<TaskData>(context).task.add(
+                          Task(name: newTaskTitle),
+                        );
+                      },
+                    );
                     Navigator.pop(context);
                   },
                 ),
@@ -46,6 +47,7 @@ class _TaskScreenState extends State<TaskScreen> {
             ),
           );
         },
+
         backgroundColor: AppColors.defaultLightBlueAccent,
         child: const Icon(Icons.add),
       ),
@@ -57,7 +59,7 @@ class _TaskScreenState extends State<TaskScreen> {
                 const EdgeInsets.only(top: 60, left: 30, right: 30, bottom: 30),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children:  <Widget>[
+              children: <Widget>[
                 const CircleAvatar(
                   radius: 30.0,
                   backgroundColor: AppColors.defaultWhite,
@@ -75,7 +77,7 @@ class _TaskScreenState extends State<TaskScreen> {
                   style: AppConstants.kHeaderTextStyle,
                 ),
                 Text(
-                  '${task.length} Tasks',
+                  '${Provider.of<TaskData>(context).task.length} Tasks',
                   style: AppConstants.kSubHeaderTextStyle,
                 ),
               ],
@@ -91,7 +93,7 @@ class _TaskScreenState extends State<TaskScreen> {
                   topRight: Radius.circular(20),
                 ),
               ),
-              child: TasksList(task),
+              child: TasksList(),
             ),
           ),
         ],
